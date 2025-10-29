@@ -1,22 +1,16 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // Geolocation
-    if ("geolocation" in navigator) {
-        navigator.geolocation.watchPosition(
-            (position) => {
-                document.getElementById("latitude").textContent = position.coords.latitude.toFixed(4);
-                document.getElementById("longitude").textContent = position.coords.longitude.toFixed(4);
-                document.getElementById("altitude").textContent = position.coords.altitude ? position.coords.altitude.toFixed(2) : "N/A";
-                document.getElementById("accuracy").textContent = position.coords.accuracy.toFixed(2);
-                document.getElementById("speed").textContent = position.coords.speed ? position.coords.speed.toFixed(2) : "N/A";
-            },
-            (error) => {
-                console.error("Geolocation error:", error);
-                alert("Could not retrieve geolocation data.");
-            }
-        );
-    } else {
-        alert("Geolocation is not supported by your browser.");
-    }
+    const tg = window.Telegram.WebApp;
+    tg.ready();
+
+    // Set theme
+    const themeParams = tg.themeParams;
+    document.body.style.backgroundColor = themeParams.bg_color || '#f0f2f5';
+    document.body.style.color = themeParams.text_color || '#1c1e21';
+
+    tg.onEvent('themeChanged', () => {
+        document.body.style.backgroundColor = tg.themeParams.bg_color || '#f0f2f5';
+        document.body.style.color = tg.themeParams.text_color || '#1c1e21';
+    });
 
     // Device Orientation
     if (window.DeviceOrientationEvent) {
@@ -26,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
             document.getElementById("gamma").textContent = event.gamma ? event.gamma.toFixed(2) : "N/A";
         });
     } else {
-        alert("Device orientation is not supported by your browser.");
+        tg.showAlert("Device orientation is not supported by your browser.");
     }
 
     // Device Motion
@@ -39,6 +33,6 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     } else {
-        alert("Device motion is not supported by your browser.");
+        tg.showAlert("Device motion is not supported by your browser.");
     }
 });

@@ -1,22 +1,15 @@
-# Geo-Device Stats
+# Geo-Device Stats Telegram Mini App
 
-A simple web application to display your device's geolocation, orientation, and motion data.
+A Telegram Mini App to display your device's orientation and motion data.
 
 ## How to Use
 
-1.  Open the `index.html` file in a web browser.
-2.  Allow the browser to access your device's location and motion sensors.
-3.  The data will be displayed on the screen and will update in real-time.
+1.  Deploy this web application to a public URL.
+2.  Create a new Telegram Bot using @BotFather.
+3.  Set the web app URL for your bot using the `/setmenubutton` command in @BotFather.
+4.  Open the chat with your bot in Telegram and click the menu button to launch the Mini App.
 
 ## Data Displayed
-
-### Geolocation
-
-*   **Latitude:** Your current latitude.
-*   **Longitude:** Your current longitude.
-*   **Altitude:** Your current altitude in meters above sea level.
-*   **Accuracy:** The accuracy of the location data in meters.
-*   **Speed:** Your current speed in meters per second.
 
 ### Device Orientation
 
